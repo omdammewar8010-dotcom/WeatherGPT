@@ -1,0 +1,53 @@
+name: ner_landslideguard
+description: "AI-Based Early Warning and Landslide Risk Monitoring System in North Eastern Region of India"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # State Management & DI
+  flutter_riverpod: ^2.6.1
+
+  # Navigation & Deep Linking
+  go_router: ^14.8.1
+
+  # Network & REST API
+  dio: ^5.8.0+1
+
+  # Typography & Design System
+  google_fonts: ^6.2.1
+  cupertino_icons: ^1.0.8
+
+  # Charts & GIS Visualizations
+  fl_chart: ^0.70.2
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
+
+  # Utilities & Local Data
+  intl: ^0.20.2
+  shared_preferences: ^2.5.2
+  uuid: ^4.5.1
+
+  # Device Hardware
+  geolocator: ^13.0.2
+  image_picker: ^1.1.2
+  cached_network_image: ^3.4.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/geojson/

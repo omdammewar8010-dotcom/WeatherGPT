@@ -1,0 +1,27 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Helper function
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // Incident media folder
+    match /incident_media/{reportId}/{allPaths=**} {
+      // Allow read for authenticated users to inspect evidence photos
+      allow read: if isSignedIn();
+      
+      // Allow image uploads (JPEG, PNG, WEBP) under 10MB
+      allow write: if isSignedIn()
+        && request.resource.size < 10 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+    }
+
+    // GIS Map vector and GeoJSON assets
+    match /gis_assets/{allPaths=**} {
+      allow read: if true;
+      allow write: if isSignedIn() && request.auth.token.role == 'authority_admin';
+    }
+  }
+}

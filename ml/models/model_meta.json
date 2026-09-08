@@ -1,0 +1,66 @@
+{
+  "project": "NER-LandslideGuard Two-Layer Hybrid ML Engine",
+  "sih_statement": "SIH26001",
+  "version": "1.0.0",
+  "trained_samples": 7500,
+  "layer1": {
+    "model_type": "RandomForestRegressor(n_estimators=120, max_depth=12)",
+    "features": [
+      "slope_angle",
+      "elevation_m",
+      "soil_type",
+      "fault_dist_km",
+      "ndvi",
+      "road_cut_idx"
+    ],
+    "r2_score": 0.9434,
+    "rmse": 3.316,
+    "mae": 2.645,
+    "base_value": 57.99,
+    "feature_importance": {
+      "slope_angle": 0.27842587331565405,
+      "elevation_m": 0.006401488812503071,
+      "soil_type": 0.5369863899014274,
+      "fault_dist_km": 0.11893871864344582,
+      "ndvi": 0.012594817226393903,
+      "road_cut_idx": 0.04665271210057575
+    }
+  },
+  "layer2": {
+    "model_type": "GradientBoostingRegressor(n_estimators=140, max_depth=6)",
+    "features": [
+      "rainfall_24h_mm",
+      "rainfall_72h_mm",
+      "soil_sat_pct",
+      "pwp_kpa",
+      "tilt_rate_deg_day",
+      "pga_seismic_g"
+    ],
+    "r2_score": 0.9912,
+    "rmse": 2.689,
+    "mae": 2.146,
+    "base_value": 40.95,
+    "feature_importance": {
+      "rainfall_24h_mm": 0.0479502416272939,
+      "rainfall_72h_mm": 0.9015915310950585,
+      "soil_sat_pct": 0.04262133602328584,
+      "pwp_kpa": 0.0043366824926654585,
+      "tilt_rate_deg_day": 0.002604973735952768,
+      "pga_seismic_g": 0.0008952350257433492
+    }
+  },
+  "composite_weights": {
+    "layer1_static": 0.35,
+    "layer2_dynamic": 0.65
+  },
+  "ner_states_covered": [
+    "Arunachal Pradesh",
+    "Sikkim",
+    "Meghalaya",
+    "Mizoram",
+    "Nagaland",
+    "Manipur",
+    "Assam",
+    "Tripura"
+  ]
+}
