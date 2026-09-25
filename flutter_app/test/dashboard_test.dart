@@ -46,7 +46,7 @@ void main() {
 
       await tester.pumpAndSettle();
 
-      expect(find.text('NER-LandslideGuard'), findsOneWidget);
+      expect(find.text('WeatherGPT'), findsOneWidget);
       expect(find.text('CURRENT AREA RISK'), findsOneWidget);
       expect(find.text('GIS Risk Map'), findsOneWidget);
       expect(find.text('Report Incident'), findsOneWidget);

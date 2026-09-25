@@ -43,44 +43,44 @@ class QuickActionsGrid extends StatelessWidget {
           children: [
             _buildActionTile(
               title: 'GIS Risk Map',
-              subtitle: 'Multi-layer terrain zones',
+              subtitle: 'Interactive weather radar map',
               icon: Icons.map_outlined,
               color: AppColors.accent,
               onTap: onOpenMap,
             ),
             _buildActionTile(
               title: 'Report Incident',
-              subtitle: '1-Tap geo-tagged upload',
-              icon: Icons.report_problem_outlined,
+              subtitle: 'Crowdsourced weather spotter',
+              icon: Icons.add_a_photo_outlined,
               color: AppColors.riskCritical,
               onTap: onReportIncident,
             ),
             _buildActionTile(
               title: 'Rainfall Radar',
-              subtitle: '1h - 24h precipitation',
+              subtitle: 'Doppler dBZ & Nowcasting',
               icon: Icons.cloudy_snowing,
               color: AppColors.accentLight,
               onTap: onWeather,
             ),
             _buildActionTile(
               title: 'Emergency SOS',
-              subtitle: 'Helpline & safe routes',
+              subtitle: 'Helpline & severe alert',
               icon: Icons.phone_in_talk_outlined,
               color: AppColors.riskHigh,
               onTap: onEmergency,
             ),
             if (onRoads != null)
               _buildActionTile(
-                title: 'Highway Corridors',
-                subtitle: 'NH-13, NH-10, NH-29 live',
-                icon: Icons.traffic_rounded,
+                title: 'Sector Advisories',
+                subtitle: 'Agromet, Aviation, Marine, City',
+                icon: Icons.business_center_rounded,
                 color: AppColors.riskModerate,
                 onTap: onRoads!,
               ),
             if (onAlerts != null)
               _buildActionTile(
                 title: 'Alert Center',
-                subtitle: 'Push bulletins & sirens',
+                subtitle: 'IMD color warnings & sirens',
                 icon: Icons.notifications_active_outlined,
                 color: AppColors.riskCritical,
                 onTap: onAlerts!,

@@ -18,9 +18,8 @@ class DashboardRemoteDataSourceImpl implements DashboardRemoteDataSource {
       final response = await apiClient.dio.get('${ApiEndpoints.riskLocation}/$districtName');
       return RiskProfileModel.fromJson(response.data as Map<String, dynamic>);
     } catch (_) {
-      // Return realistic local profile for NER state/district
-      return RiskProfileModel.nerDistrictProfiles[districtName] ??
-          RiskProfileModel.nerDistrictProfiles['Tawang']!;
+      // Return realistic local profile for any Indian state/district
+      return RiskProfileModel.getProfileForLocation(districtName);
     }
   }
 

@@ -1,20 +1,27 @@
 from fastapi import APIRouter
 from app.api.v1.endpoints import (
+    weathergpt,
+    weather,
+    alerts,
     risk,
     predictions,
     reports,
-    weather,
-    alerts,
     roads,
     emergency,
 )
 
 api_router = APIRouter()
 
-api_router.include_router(risk.router, prefix="/risk", tags=["Risk Analysis & Monitoring"])
-api_router.include_router(predictions.router, prefix="/predictions", tags=["Two-Layer AI Predictions"])
-api_router.include_router(reports.router, prefix="/reports", tags=["Citizen Incident Reports"])
-api_router.include_router(weather.router, prefix="/weather", tags=["IMD Weather & Precipitation Radar"])
-api_router.include_router(alerts.router, prefix="/alerts", tags=["Early Warnings & Advisories"])
-api_router.include_router(roads.router, prefix="/roads", tags=["Highway & Corridor Overwatch"])
-api_router.include_router(emergency.router, prefix="/emergency", tags=["Emergency Triage & Evacuation"])
+# Primary WeatherGPT Conversational Intelligence
+api_router.include_router(weathergpt.router, prefix="/weathergpt", tags=["WeatherGPT Conversational AI & Sector Advisories"])
+
+# Meteorological Services & Radar
+api_router.include_router(weather.router, prefix="/weather", tags=["IMD Weather, NWP Models & Doppler Radar"])
+api_router.include_router(alerts.router, prefix="/alerts", tags=["IMD Early Warnings & CAP Bulletins"])
+api_router.include_router(risk.router, prefix="/risk", tags=["Extreme Weather Risk & Vulnerability Index"])
+api_router.include_router(predictions.router, prefix="/predictions", tags=["Two-Layer NWP AI Predictions"])
+
+# Supporting Field & Citizen Services
+api_router.include_router(reports.router, prefix="/reports", tags=["Citizen Weather & Ground Reports"])
+api_router.include_router(roads.router, prefix="/roads", tags=["Corridor & Transport Lifelines"])
+api_router.include_router(emergency.router, prefix="/emergency", tags=["Emergency Triage & Relief Centers"])

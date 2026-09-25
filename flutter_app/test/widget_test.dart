@@ -6,7 +6,7 @@ import 'package:ner_landslideguard/core/storage/local_storage_service.dart';
 import 'package:ner_landslideguard/features/authentication/presentation/providers/auth_provider.dart';
 
 void main() {
-  testWidgets('NER-LandslideGuard app renders splash screen', (WidgetTester tester) async {
+  testWidgets('WeatherGPT app renders splash screen', (WidgetTester tester) async {
     SharedPreferences.setMockInitialValues({});
     final sharedPrefs = await SharedPreferences.getInstance();
     final storageService = LocalStorageService(sharedPrefs);
@@ -21,8 +21,8 @@ void main() {
       ),
     );
 
-    expect(find.text('LandslideGuard'), findsOneWidget);
-    expect(find.text('NER'), findsOneWidget);
+    expect(find.text('WeatherGPT'), findsOneWidget);
+    expect(find.text('MoES / IMD'), findsOneWidget);
 
     // Fast-forward animation and timer
     await tester.pump(const Duration(milliseconds: 2500));

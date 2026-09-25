@@ -10,6 +10,8 @@ class AppColors {
   static const Color surface = Color(0xFF161E2E);        // Elevated Card Surface
   static const Color surfaceLight = Color(0xFF222F43);   // Lighter Surface
   static const Color surfaceBorder = Color(0xFF26334D);  // Subtle Card Stroke
+  static const Color border = Color(0xFF26334D);         // General Border Alias
+
 
   // Semantic Risk Tiers (Standardized Emergency Palette)
   static const Color riskLow = Color(0xFF10B981);        // Emerald 500 (0-29)

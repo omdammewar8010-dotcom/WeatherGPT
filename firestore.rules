@@ -19,15 +19,15 @@ service cloud.firestore {
     }
 
     function isCitizen() {
-      return hasRole('citizen');
+      return hasRole('citizen') || hasRole('farmer');
     }
 
     function isFieldOfficer() {
-      return hasRole('field_officer');
+      return hasRole('field_officer') || hasRole('meteorologist');
     }
 
     function isAuthorityAdmin() {
-      return hasRole('authority_admin');
+      return hasRole('authority_admin') || hasRole('imd_admin');
     }
 
     function isOwner(userId) {
@@ -49,27 +49,66 @@ service cloud.firestore {
     }
 
     // ==========================================
-    // INCIDENT REPORTS COLLECTION
+    // WEATHERGPT CONVERSATIONS & CHAT HISTORY
+    // ==========================================
+    match /weathergpt_conversations/{conversationId} {
+      allow read, write: if isSignedIn() && (request.resource.data.userId == request.auth.uid || resource.data.userId == request.auth.uid);
+      allow delete: if isSignedIn() && resource.data.userId == request.auth.uid;
+
+      match /messages/{messageId} {
+        allow read, write: if isSignedIn();
+      }
+    }
+
+    // ==========================================
+    // IMD EARLY WARNINGS & CAP BULLETINS
+    // ==========================================
+    match /early_warnings/{warningId} {
+      allow read: if true; // Public safety broadcast open to all citizens
+      allow write: if isAuthorityAdmin() || isFieldOfficer();
+    }
+
+    // ==========================================
+    // SYNOPTIC STATIONS & DOPPLER TELEMETRY
+    // ==========================================
+    match /synoptic_stations/{stationId} {
+      allow read: if true;
+      allow write: if isAuthorityAdmin();
+
+      match /telemetry_history/{telemetryId} {
+        allow read: if true;
+        allow create: if isAuthorityAdmin();
+      }
+    }
+
+    // ==========================================
+    // SECTOR ADVISORIES (AGROMET, MARINE, AVIATION)
+    // ==========================================
+    match /sector_advisories/{advisoryId} {
+      allow read: if true;
+      allow write: if isAuthorityAdmin() || isFieldOfficer();
+    }
+
+    // ==========================================
+    // CLIMATE TRENDS & DECADAL ANOMALIES
+    // ==========================================
+    match /climate_trends/{districtId} {
+      allow read: if true;
+      allow write: if isAuthorityAdmin();
+    }
+
+    // ==========================================
+    // CITIZEN WEATHER & GROUND DAMAGE REPORTS
     // ==========================================
     match /incident_reports/{reportId} {
-      // Any authenticated user or citizen can read incident reports
       allow read: if isSignedIn();
-
-      // Any authenticated citizen/officer can submit new reports
       allow create: if isSignedIn() 
-        && request.resource.data.reportedByUserId == request.auth.uid
-        && request.resource.data.keys().hasAll(['category', 'severity', 'state', 'district', 'latitude', 'longitude', 'reportedAt']);
-
-      // Field officers can verify/update status and add investigation notes
-      // Citizens can update their own pending report before investigation begins
+        && request.resource.data.reportedByUserId == request.auth.uid;
       allow update: if isAuthorityAdmin() 
         || (isFieldOfficer() && request.resource.data.diff(resource.data).affectedKeys().hasAny(['status', 'verifiedBy', 'resolvedAt', 'resolutionNotes']))
         || (isOwner(resource.data.reportedByUserId) && resource.data.status == 'PENDING');
-
-      // Only authority admins can delete reports
       allow delete: if isAuthorityAdmin();
 
-      // Sub-collection for audit trail
       match /audit_trail/{auditId} {
         allow read: if isSignedIn();
         allow create: if isFieldOfficer() || isAuthorityAdmin();
@@ -77,38 +116,15 @@ service cloud.firestore {
     }
 
     // ==========================================
-    // RISK ASSESSMENTS & PREDICTIONS
+    // EVACUATION SHELTERS & RELIEF CENTERS
     // ==========================================
-    match /risk_assessments/{districtId} {
-      // Public / all authenticated users can read real-time risk predictions
-      allow read: if isSignedIn();
-      // Only ML backend service / authority admins can publish risk updates
+    match /evacuation_shelters/{shelterId} {
+      allow read: if true;
       allow write: if isAuthorityAdmin();
     }
 
     // ==========================================
-    // EARLY WARNINGS & ADVISORIES
-    // ==========================================
-    match /early_warnings/{warningId} {
-      allow read: if true; // Public safety broadcasts
-      allow write: if isAuthorityAdmin() || isFieldOfficer();
-    }
-
-    // ==========================================
-    // IOT SENSORS & TELEMETRY
-    // ==========================================
-    match /iot_sensors/{sensorId} {
-      allow read: if isSignedIn();
-      allow write: if isAuthorityAdmin();
-
-      match /telemetry_history/{telemetryId} {
-        allow read: if isSignedIn();
-        allow create: if isAuthorityAdmin();
-      }
-    }
-
-    // ==========================================
-    // ROAD STATUS & BLOCKAGES
+    // ROAD STATUS & CORRIDORS
     // ==========================================
     match /road_status/{roadId} {
       allow read: if true;
@@ -121,7 +137,7 @@ service cloud.firestore {
     match /system_audit_logs/{logId} {
       allow read: if isAuthorityAdmin();
       allow create: if isSignedIn();
-      allow update, delete: if false; // Append-only audit trail
+      allow update, delete: if false; // Immutable audit trail
     }
   }
 }

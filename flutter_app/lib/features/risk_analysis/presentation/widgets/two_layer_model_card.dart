@@ -32,27 +32,27 @@ class TwoLayerModelCard extends StatelessWidget {
           ),
           const SizedBox(height: 14),
 
-          // Layer 1: Static Susceptibility
+          // Layer 1: Climatological Baseline
           _buildLayerRow(
             layerNumber: 'LAYER 1',
-            title: 'Static Terrain Susceptibility',
+            title: 'Climatological Baseline & Vulnerability',
             score: analysis.staticVulnerabilityScore,
             color: AppColors.accentLight,
-            description: 'Elevation, Slope Gradient, Aspect, Soil Lithology, GSI Historical Catalog',
-            algorithm: 'Random Forest (Static Propensity)',
+            description: '50-Year IMD Monsoon Normal, Orographic Windward Catchment, Topographic Elevation',
+            algorithm: 'Random Forest (Climatological Norms)',
           ),
           const SizedBox(height: 12),
           const Divider(),
           const SizedBox(height: 12),
 
-          // Layer 2: Dynamic Trigger Hazard
+          // Layer 2: Dynamic NWP & Radar Trigger Hazard
           _buildLayerRow(
             layerNumber: 'LAYER 2',
-            title: 'Dynamic Trigger Risk',
+            title: 'Dynamic NWP & Radar Trigger Hazard',
             score: analysis.dynamicTriggerRiskScore,
             color: AppColors.riskCritical,
-            description: '1h-7d Precipitation Accumulation, 24h IMD Forecast, Soil Pore Moisture Saturation',
-            algorithm: 'XGBoost Regressor (Dynamic Trigger)',
+            description: 'Doppler Radar dBZ, 24h QPF Rainfall, CAPE Instability, Catchment Soil Saturation',
+            algorithm: 'XGBoost & Ensemble Regressor (Nowcasting Hazard)',
           ),
           const SizedBox(height: 14),
 
@@ -70,7 +70,7 @@ class TwoLayerModelCard extends StatelessWidget {
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
-                    'Hazard = (0.35 × Static) + (0.65 × Dynamic) × Exposure [Normalized 0–100]',
+                    'Hazard = (0.35 × Climatological) + (0.65 × Nowcasting Trigger) [Normalized 0–100]',
                     style: AppTypography.caption.copyWith(
                       color: AppColors.textPrimary,
                       fontFamily: 'monospace',

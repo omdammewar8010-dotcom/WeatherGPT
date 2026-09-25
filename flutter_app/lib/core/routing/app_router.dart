@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../features/weathergpt/presentation/screens/weathergpt_chat_screen.dart';
+import '../../features/advisories/presentation/screens/sector_advisories_screen.dart';
 import '../../features/alerts/presentation/screens/alert_center_screen.dart';
 import '../../features/admin_console/presentation/admin_command_center_screen.dart';
 import '../../features/authentication/presentation/screens/login_screen.dart';
@@ -39,6 +41,17 @@ final GoRouter appRouter = GoRouter(
       path: '/citizen',
       name: RouteNames.citizenHome,
       builder: (context, state) => const CitizenHomeScreen(),
+    ),
+    // WeatherGPT Conversational Flow
+    GoRoute(
+      path: '/chat',
+      name: RouteNames.weathergptChat,
+      builder: (context, state) => const WeatherGptChatScreen(),
+    ),
+    GoRoute(
+      path: '/advisories',
+      name: RouteNames.sectorAdvisories,
+      builder: (context, state) => const SectorAdvisoriesScreen(),
     ),
     GoRoute(
       path: '/risk-map',

@@ -1,5 +1,5 @@
 name: ner_landslideguard
-description: "AI-Based Early Warning and Landslide Risk Monitoring System in North Eastern Region of India"
+description: "WeatherGPT: Conversational AI for Weather Forecasting, Alerts, and Climate Information (MoES / IMD - SIH26068)"
 publish_to: 'none'
 version: 1.0.0+1
 

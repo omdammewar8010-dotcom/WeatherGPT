@@ -49,7 +49,7 @@ class AuthSelectionScreen extends ConsumerWidget {
                       border: Border.all(color: AppColors.surfaceBorder),
                     ),
                     child: const Icon(
-                      Icons.landscape_rounded,
+                      Icons.cyclone_rounded,
                       color: AppColors.accentLight,
                       size: 26,
                     ),
@@ -58,9 +58,9 @@ class AuthSelectionScreen extends ConsumerWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('NER-LandslideGuard', style: AppTypography.heading2),
+                      Text('WeatherGPT', style: AppTypography.heading2),
                       Text(
-                        'Disaster Management Portal',
+                        'Ministry of Earth Sciences (MoES) / IMD',
                         style: AppTypography.bodySmall.copyWith(color: AppColors.textMuted),
                       ),
                     ],
@@ -81,12 +81,12 @@ class AuthSelectionScreen extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Welcome to NER Early Warning',
+                      'Welcome to WeatherGPT Intelligence',
                       style: AppTypography.heading3,
                     ),
                     const SizedBox(height: 6),
                     Text(
-                      'Select your operational portal or use the instant evaluation demo profile.',
+                      'Select your meteorological portal or explore with instant evaluation demo profiles.',
                       style: AppTypography.bodyMedium,
                     ),
                   ],
@@ -103,8 +103,8 @@ class AuthSelectionScreen extends ConsumerWidget {
               // Role Card 1: Citizen
               _buildRoleCard(
                 context: context,
-                title: 'Citizen Portal',
-                subtitle: 'Hyperlocal risk score, weather, early warnings & 1-tap incident reporting',
+                title: 'Citizen Weather Portal',
+                subtitle: 'Natural language forecasts, voice queries, radar nowcasting & extreme alerts',
                 icon: Icons.person_pin_circle_outlined,
                 badgeColor: AppColors.riskLow,
                 badgeText: 'PUBLIC ACCESS',
@@ -116,11 +116,11 @@ class AuthSelectionScreen extends ConsumerWidget {
               // Role Card 2: Field Officer
               _buildRoleCard(
                 context: context,
-                title: 'Field Officer Console',
-                subtitle: 'Assigned incident verification, on-site telemetry & offline GPS reporting',
+                title: 'Meteorologist & Field Console',
+                subtitle: 'Doppler radar calibration, rain gauge telemetry, synoptic charts & station logs',
                 icon: Icons.assignment_turned_in_outlined,
                 badgeColor: AppColors.riskModerate,
-                badgeText: 'FIELD CREW',
+                badgeText: 'MET CREW',
                 onTap: () => _loginAsRole(context, ref, AppConstants.roleFieldOfficer),
               ),
 
@@ -129,11 +129,11 @@ class AuthSelectionScreen extends ConsumerWidget {
               // Role Card 3: Authority Admin
               _buildRoleCard(
                 context: context,
-                title: 'Authority Command Desk',
-                subtitle: '8-State NER overwatch, multi-criteria emergency ranking & broadcast alerts',
+                title: 'IMD Command & Warning Desk',
+                subtitle: 'Pan-India NWP model consensus, CAP alert broadcasts & sector-specific advisories',
                 icon: Icons.admin_panel_settings_outlined,
                 badgeColor: AppColors.riskCritical,
-                badgeText: 'AUTHORITY / SDMA',
+                badgeText: 'IMD / SDMA',
                 onTap: () => _loginAsRole(context, ref, AppConstants.roleAuthorityAdmin),
               ),
 

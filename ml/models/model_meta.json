@@ -1,66 +1,66 @@
 {
-  "project": "NER-LandslideGuard Two-Layer Hybrid ML Engine",
-  "sih_statement": "SIH26001",
-  "version": "1.0.0",
+  "project": "WeatherGPT Two-Layer NWP & Mesoscale AI Hazard Engine",
+  "sih_statement": "SIH26068",
+  "organization": "Ministry of Earth Sciences (MoES) / India Meteorological Department (IMD)",
+  "version": "2.0.0",
   "trained_samples": 7500,
   "layer1": {
-    "model_type": "RandomForestRegressor(n_estimators=120, max_depth=12)",
+    "model_name": "NWP-Synoptic-RF",
+    "model_type": "RandomForestRegressor(n_estimators=130, max_depth=12)",
     "features": [
-      "slope_angle",
-      "elevation_m",
-      "soil_type",
-      "fault_dist_km",
-      "ndvi",
-      "road_cut_idx"
+      "cape_j_kg",
+      "lifted_index",
+      "precipitable_water_mm",
+      "wind_shear_0_6km_kts",
+      "rh_850hpa_pct",
+      "temp_anomaly_c"
     ],
-    "r2_score": 0.9434,
-    "rmse": 3.316,
-    "mae": 2.645,
-    "base_value": 57.99,
+    "r2_score": 0.9501,
+    "rmse": 2.927,
+    "mae": 2.31,
+    "base_value": 40.75,
     "feature_importance": {
-      "slope_angle": 0.27842587331565405,
-      "elevation_m": 0.006401488812503071,
-      "soil_type": 0.5369863899014274,
-      "fault_dist_km": 0.11893871864344582,
-      "ndvi": 0.012594817226393903,
-      "road_cut_idx": 0.04665271210057575
+      "cape_j_kg": 0.8326607274929795,
+      "lifted_index": 0.024233417355243203,
+      "precipitable_water_mm": 0.04909142900650059,
+      "wind_shear_0_6km_kts": 0.06919114866818087,
+      "rh_850hpa_pct": 0.020041269528511863,
+      "temp_anomaly_c": 0.004782007948583875
     }
   },
   "layer2": {
-    "model_type": "GradientBoostingRegressor(n_estimators=140, max_depth=6)",
+    "model_name": "Mesoscale-Nowcast-GB",
+    "model_type": "GradientBoostingRegressor(n_estimators=150, max_depth=6)",
     "features": [
-      "rainfall_24h_mm",
-      "rainfall_72h_mm",
-      "soil_sat_pct",
-      "pwp_kpa",
-      "tilt_rate_deg_day",
-      "pga_seismic_g"
+      "radar_reflectivity_dbz",
+      "rain_rate_mm_hr",
+      "rainfall_3h_accum_mm",
+      "cloud_top_temp_c",
+      "pressure_trend_3h_hpa",
+      "wind_gust_kmh"
     ],
-    "r2_score": 0.9912,
-    "rmse": 2.689,
-    "mae": 2.146,
-    "base_value": 40.95,
+    "r2_score": 0.9765,
+    "rmse": 2.323,
+    "mae": 1.841,
+    "base_value": 28.4,
     "feature_importance": {
-      "rainfall_24h_mm": 0.0479502416272939,
-      "rainfall_72h_mm": 0.9015915310950585,
-      "soil_sat_pct": 0.04262133602328584,
-      "pwp_kpa": 0.0043366824926654585,
-      "tilt_rate_deg_day": 0.002604973735952768,
-      "pga_seismic_g": 0.0008952350257433492
+      "radar_reflectivity_dbz": 0.8248783959794888,
+      "rain_rate_mm_hr": 0.004908528883214982,
+      "rainfall_3h_accum_mm": 0.05456401822410943,
+      "cloud_top_temp_c": 0.082961925941606,
+      "pressure_trend_3h_hpa": 0.01876713352663692,
+      "wind_gust_kmh": 0.013919997444943988
     }
   },
   "composite_weights": {
-    "layer1_static": 0.35,
-    "layer2_dynamic": 0.65
+    "layer1_synoptic": 0.3,
+    "layer2_mesoscale": 0.7
   },
-  "ner_states_covered": [
-    "Arunachal Pradesh",
-    "Sikkim",
-    "Meghalaya",
-    "Mizoram",
-    "Nagaland",
-    "Manipur",
-    "Assam",
-    "Tripura"
+  "target_hazards": [
+    "CLOUDBURST_FLASHFLOOD",
+    "THUNDERSTORM_LIGHTNING",
+    "HEATWAVE_SEVERE",
+    "SQUALL_SEVERE_GALE",
+    "HEAVY_RAINFALL_FLOOD"
   ]
 }

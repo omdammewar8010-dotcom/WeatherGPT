@@ -66,25 +66,29 @@ class WeatherRepositoryImpl implements WeatherRepository {
       );
     }
 
-    return const WeatherRadarEntity(
-      district: 'Tawang',
-      state: 'Arunachal Pradesh',
-      currentTempC: 14.5,
-      humidityPct: 94,
-      rainfallAccumulated24hMm: 184.5,
-      rainfallIntensityMmHr: 24.2,
-      soilSaturationPct: 91.5,
-      cloudCoverPct: 98,
-      windSpeedKmh: 22.0,
-      imdRadarStation: 'IMD Doppler Radar — Mohanbari/Tawang High-Altitude Unit',
+    final hash = key.codeUnits.fold(0, (prev, elem) => prev + elem);
+    final pseudoTemp = 20.0 + (hash % 16);
+    final pseudoRain = (hash * 3 % 80).toDouble();
+
+    return WeatherRadarEntity(
+      district: district.isEmpty ? 'New Delhi' : district,
+      state: 'India',
+      currentTempC: pseudoTemp,
+      humidityPct: 50 + (hash % 45),
+      rainfallAccumulated24hMm: pseudoRain,
+      rainfallIntensityMmHr: (pseudoRain / 6.0),
+      soilSaturationPct: (30.0 + pseudoRain * 0.6).clamp(10.0, 95.0),
+      cloudCoverPct: (20 + (hash % 75)).clamp(10, 100),
+      windSpeedKmh: 12.0 + (hash % 20),
+      imdRadarStation: 'IMD Doppler Radar — Regional Observatory (${district.isEmpty ? "New Delhi" : district})',
       lastUpdated: 'Live IMD Telemetry',
       forecastTimeline: [
-        HourlyPrecipitationEntity(timeLabel: 'Now', rainfallMm: 24.2, probabilityPct: 95, riskLevel: 'CRITICAL'),
-        HourlyPrecipitationEntity(timeLabel: '+1h', rainfallMm: 21.0, probabilityPct: 90, riskLevel: 'CRITICAL'),
-        HourlyPrecipitationEntity(timeLabel: '+2h', rainfallMm: 18.5, probabilityPct: 85, riskLevel: 'HIGH'),
-        HourlyPrecipitationEntity(timeLabel: '+3h', rainfallMm: 14.0, probabilityPct: 75, riskLevel: 'HIGH'),
-        HourlyPrecipitationEntity(timeLabel: '+6h', rainfallMm: 9.5, probabilityPct: 60, riskLevel: 'MODERATE'),
-        HourlyPrecipitationEntity(timeLabel: '+12h', rainfallMm: 5.0, probabilityPct: 40, riskLevel: 'LOW'),
+        HourlyPrecipitationEntity(timeLabel: 'Now', rainfallMm: (pseudoRain / 6.0), probabilityPct: 65, riskLevel: pseudoRain > 45 ? 'HIGH' : 'LOW'),
+        HourlyPrecipitationEntity(timeLabel: '+1h', rainfallMm: (pseudoRain / 7.0), probabilityPct: 60, riskLevel: pseudoRain > 45 ? 'HIGH' : 'LOW'),
+        HourlyPrecipitationEntity(timeLabel: '+2h', rainfallMm: (pseudoRain / 9.0), probabilityPct: 45, riskLevel: 'LOW'),
+        HourlyPrecipitationEntity(timeLabel: '+3h', rainfallMm: (pseudoRain / 12.0), probabilityPct: 30, riskLevel: 'LOW'),
+        HourlyPrecipitationEntity(timeLabel: '+6h', rainfallMm: 1.0, probabilityPct: 20, riskLevel: 'LOW'),
+        HourlyPrecipitationEntity(timeLabel: '+12h', rainfallMm: 0.0, probabilityPct: 10, riskLevel: 'LOW'),
       ],
     );
   }

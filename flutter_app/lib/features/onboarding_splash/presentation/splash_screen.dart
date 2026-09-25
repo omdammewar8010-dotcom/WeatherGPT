@@ -101,7 +101,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                         ),
                         child: const Center(
                           child: Icon(
-                            Icons.landscape_rounded,
+                            Icons.cyclone_rounded,
                             size: 48,
                             color: AppColors.accentLight,
                           ),
@@ -109,7 +109,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                       ),
                       const SizedBox(height: 24),
                       Text(
-                        'NER',
+                        'MoES / IMD',
                         style: AppTypography.caption.copyWith(
                           color: AppColors.accentLight,
                           letterSpacing: 4,
@@ -118,7 +118,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        'LandslideGuard',
+                        'WeatherGPT',
                         style: AppTypography.displayBold.copyWith(
                           fontSize: 28,
                           letterSpacing: -0.5,
@@ -126,11 +126,12 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                       ),
                       const SizedBox(height: 10),
                       Text(
-                        AppConstants.appTagline,
+                        'Conversational Weather, Alerts & Climate Intelligence',
                         style: AppTypography.bodyMedium.copyWith(
                           color: AppColors.textSecondary,
                           letterSpacing: 0.5,
                         ),
+                        textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 32),
                       Container(
@@ -153,7 +154,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                             ),
                             const SizedBox(width: 8),
                             Text(
-                              'AI-Powered Early Warning Active',
+                              'IMD Doppler Radar & NWP Models Active',
                               style: AppTypography.caption.copyWith(
                                 color: AppColors.textSecondary,
                               ),
@@ -172,7 +173,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
             left: 0,
             right: 0,
             child: Text(
-              'Smart India Hackathon • SIH26001',
+              'Smart India Hackathon • SIH26068 (MoES / IMD)',
               style: AppTypography.bodySmall.copyWith(
                 color: AppColors.textMuted,
                 letterSpacing: 0.5,

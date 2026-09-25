@@ -53,7 +53,7 @@ class ActiveWarningCard extends StatelessWidget {
                   Icon(Icons.warning_amber_rounded, color: cardColor, size: 20),
                   const SizedBox(width: 8),
                   Text(
-                    'ACTIVE LANDSLIDE WARNING',
+                    'IMD SEVERE WEATHER WARNING',
                     style: AppTypography.caption.copyWith(
                       color: cardColor,
                       fontWeight: FontWeight.bold,

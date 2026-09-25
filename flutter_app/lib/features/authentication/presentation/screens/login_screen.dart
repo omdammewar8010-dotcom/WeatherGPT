@@ -90,20 +90,20 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       ],
                     ),
                     child: const Center(
-                      child: Icon(Icons.landscape_rounded, size: 36, color: AppColors.accentLight),
+                      child: Icon(Icons.cyclone_rounded, size: 36, color: AppColors.accentLight),
                     ),
                   ),
                 ),
                 const SizedBox(height: 16),
                 Center(
                   child: Text(
-                    'NER-LandslideGuard',
+                    'WeatherGPT',
                     style: AppTypography.heading1.copyWith(letterSpacing: -0.3),
                   ),
                 ),
                 Center(
                   child: Text(
-                    'AI Early Warning & Disaster Response Portal',
+                    'MoES / IMD Conversational Weather & Climate Intelligence',
                     style: AppTypography.bodySmall.copyWith(color: AppColors.textMuted),
                   ),
                 ),

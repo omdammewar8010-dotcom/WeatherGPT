@@ -55,7 +55,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
     if (success && mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Registration successful! Welcome to NER-LandslideGuard.'),
+          content: Text('Registration successful! Welcome to WeatherGPT (MoES / IMD).'),
           backgroundColor: AppColors.success,
         ),
       );
@@ -76,7 +76,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: const Text('Create Portal Account'),
+        title: const Text('Create WeatherGPT Account'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_rounded),
           onPressed: () => context.pop(),
@@ -100,11 +100,11 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   ),
                   child: Row(
                     children: [
-                      const Icon(Icons.shield_outlined, color: AppColors.accentLight, size: 24),
+                      const Icon(Icons.cloud_sync_outlined, color: AppColors.accentLight, size: 24),
                       const SizedBox(width: 12),
                       Expanded(
                         child: Text(
-                          'Register with your North Eastern Region state and district for localized risk early warnings.',
+                          'Register with your Indian state and district/city for localized WeatherGPT intelligence and severe alerts.',
                           style: AppTypography.bodySmall,
                         ),
                       ),

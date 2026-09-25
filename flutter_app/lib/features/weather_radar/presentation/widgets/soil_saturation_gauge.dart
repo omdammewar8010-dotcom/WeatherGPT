@@ -15,9 +15,9 @@ class SoilSaturationGauge extends StatelessWidget {
   }
 
   String get _statusLabel {
-    if (saturationPct >= 85.0) return 'CRITICAL LIQUEFACTION RISK';
-    if (saturationPct >= 70.0) return 'HIGH PORE-PRESSURE';
-    if (saturationPct >= 50.0) return 'MODERATE MOISTURE';
+    if (saturationPct >= 85.0) return 'CRITICAL FLASH RUNOFF RISK';
+    if (saturationPct >= 70.0) return 'HIGH SURFACE SATURATION';
+    if (saturationPct >= 50.0) return 'OPTIMAL SOWING MOISTURE';
     return 'SAFE SOIL MOISTURE';
   }
 
@@ -97,22 +97,22 @@ class SoilSaturationGauge extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Pore-Water Pressure Mechanics',
+                      'Hydrometeorological Infiltration & Runoff',
                       style: AppTypography.bodySmall.copyWith(fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       saturationPct >= 85.0
-                          ? 'Soil shear strength degraded by >65%. Continuous rainfall will trigger rotational slip plane.'
-                          : 'Soil cohesion stable. Monitoring continuous infiltration rates.',
+                          ? 'Soil catchment capacity depleted. Continuous rainfall will generate immediate surface runoff and urban inundation.'
+                          : 'Catchment absorption capacity optimal for kharif sowing and aquifer recharge.',
                       style: AppTypography.caption.copyWith(color: AppColors.textSecondary),
                     ),
                     const SizedBox(height: 6),
                     Row(
                       children: [
-                        const Icon(Icons.speed_rounded, size: 14, color: AppColors.accentLight),
+                        const Icon(Icons.water_drop_rounded, size: 14, color: AppColors.accentLight),
                         const SizedBox(width: 4),
-                        Text('Critical Threshold: 85.0% Saturation', style: AppTypography.caption.copyWith(fontSize: 10)),
+                        Text('Catchment Flash Inundation Threshold: 85.0%', style: AppTypography.caption.copyWith(fontSize: 10)),
                       ],
                     ),
                   ],

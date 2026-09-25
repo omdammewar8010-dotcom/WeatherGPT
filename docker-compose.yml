@@ -5,14 +5,18 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: ner_landslideguard_backend
+    container_name: weathergpt_backend
     restart: unless-stopped
     ports:
       - "8000:8000"
     environment:
       - ENV=production
       - API_V1_STR=/api/v1
-      - PROJECT_NAME=NER-LandslideGuard
+      - PROJECT_NAME=WeatherGPT
+      - SIH_STATEMENT=SIH26068
+      - ML_DIR=/app/ml
+    volumes:
+      - ./ml:/app/ml
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 30s

@@ -1,9 +1,9 @@
-# NER-LandslideGuard: AI-Based Early Warning and Hazard Monitoring (SIH26001)
+# WeatherGPT: Conversational AI for Weather & Climate Information (SIH26068)
 # 1-Click Launch Script for PowerShell
 
 Write-Host "=======================================================================" -ForegroundColor Cyan
-Write-Host "   NER-LandslideGuard: AI-Based Early Warning and Hazard Monitoring" -ForegroundColor Yellow
-Write-Host "   Predict. Warn. Respond. Protect. (SIH26001)" -ForegroundColor Green
+Write-Host "   WeatherGPT: Conversational AI for Weather & Climate Information" -ForegroundColor Yellow
+Write-Host "   Ministry of Earth Sciences (MoES) / IMD (SIH26068)" -ForegroundColor Green
 Write-Host "=======================================================================" -ForegroundColor Cyan
 Write-Host ""
 
@@ -16,7 +16,7 @@ Start-Process -FilePath "cmd.exe" -ArgumentList "/k cd /d `"$backendDir`" && py 
 
 Start-Sleep -Seconds 2
 
-Write-Host "[2/2] Starting Flutter Application on Chrome ..." -ForegroundColor Magenta
+Write-Host "[2/2] Starting WeatherGPT Flutter App on Chrome ..." -ForegroundColor Magenta
 Start-Process -FilePath "cmd.exe" -ArgumentList "/k cd /d `"$flutterDir`" && flutter run -d chrome" -WindowStyle Normal
 
 Write-Host ""

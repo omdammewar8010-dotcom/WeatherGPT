@@ -4,7 +4,11 @@ class RouteNames {
   static const String auth = 'auth';
   static const String register = 'register';
 
-  // Citizen Flow
+  // WeatherGPT Conversational Flow
+  static const String weathergptChat = 'weathergpt-chat';
+  static const String sectorAdvisories = 'sector-advisories';
+
+  // Citizen & Public Flow
   static const String citizenHome = 'citizen-home';
   static const String riskMap = 'risk-map';
   static const String riskAnalysis = 'risk-analysis';
@@ -17,11 +21,11 @@ class RouteNames {
   static const String history = 'history';
   static const String roads = 'roads';
 
-  // Field Officer Flow
+  // Field Officer / Meteorologist Flow
   static const String officerDashboard = 'officer-dashboard';
   static const String officerInspection = 'officer-inspection';
 
-  // Admin & Dev
+  // Admin & Disaster Command
   static const String adminCommandCenter = 'admin-command-center';
   static const String adminEmergencyMatrix = 'admin-emergency-matrix';
   static const String adminAnalytics = 'admin-analytics';

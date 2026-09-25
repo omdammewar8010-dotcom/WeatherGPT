@@ -1,10 +1,10 @@
 class AppConstants {
   // Brand & Government Disclaimers
-  static const String appTitle = 'NER-LandslideGuard';
-  static const String appTagline = 'Predict. Warn. Respond. Protect.';
-  static const String sihStatement = 'SIH26001: AI-Based Early Warning & Landslide Risk Monitoring';
+  static const String appTitle = 'WeatherGPT';
+  static const String appTagline = 'Conversational Weather & Climate Intelligence (MoES / IMD)';
+  static const String sihStatement = 'SIH26068: Conversational AI for Weather Forecasting, Alerts, and Climate Information';
   static const String scientificDisclaimer =
-      'Scientific Disclaimer: The system estimates landslide risk using real-time and historical multi-source indicators. Predictions are decision-support insights and must be used alongside official alerts from local disaster management authorities (NDMA/SDMA).';
+      'Scientific Disclaimer: WeatherGPT synthesizes meteorological intelligence using IMD Doppler radar nowcasting, numerical weather prediction (NWP GFS & WRF), and climate trends. Predictions are decision-support insights and must be used alongside official alerts from India Meteorological Department (IMD) and disaster management authorities (NDMA/SDMA).';
 
   // 8 North Eastern States of India
   static const List<String> nerStates = [

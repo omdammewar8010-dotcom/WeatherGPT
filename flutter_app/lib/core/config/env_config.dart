@@ -1,7 +1,8 @@
 class EnvConfig {
-  static const String appName = 'NER-LandslideGuard';
-  static const String appVersion = '1.0.0';
-  static const String appTagline = 'Predict. Warn. Respond. Protect.';
+  static const String appName = 'WeatherGPT';
+  static const String appVersion = '2.0.0';
+  static const String appTagline = 'Conversational Weather & Climate Intelligence (MoES / IMD)';
+  static const String sihStatement = 'SIH26068';
   
   // Base URLs - default points to local FastAPI backend; can be configured at runtime
   static const String apiBaseUrl = String.fromEnvironment(
